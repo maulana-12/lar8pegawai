@@ -49,8 +49,7 @@ class EmployeeController extends Controller
         // Kirim notifikasi
         notify()->success('Data pegawai ' . $request->name . ' berhasil ditambahkan');
         // dd($request);
-        return redirect()->route('pegawai.create')
-            ->with('success', 'Data pegawai berhasil ditambahkan');
+        return redirect()->route('pegawai');
     }
 
     /**
@@ -71,9 +70,10 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        return view('pegawai.edit_pegawai', compact('employee'));
     }
 
     /**
@@ -83,9 +83,18 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $employee->name = $request->input('name');
+        $employee->gender = $request->input('gender');
+        $employee->phone_number = $request->input('phone_number');
+        $employee->save();
+
+        // Kirim notifikasi
+        notify()->success('Data pegawai ' . $request->name . ' berhasil diupdate');
+        // dd($request);
+        return redirect()->route('pegawai');
     }
 
     /**

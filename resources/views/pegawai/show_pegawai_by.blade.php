@@ -14,18 +14,16 @@
   </head>
   <body>
       <h1 class="text-center m-3">Data Pegawai</h1>
-<div class="container">
+    <div class="container">
     <div class="row">
         <div class="card">
             <div class="card-body">
-                {{-- <p>Nama: {{ $employee->name }}</p>
-                <p>Jenis Kelamin: {{ $employee->gender }}</p>
-                <p>Nomor Telepon: {{ $employee->phone_number }}</p> --}}
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Nama: {{ $employee->name }}</li>
-                    <li class="list-group-item">Jenis Kelamin: {{ $employee->gender }}</li>
-                    <li class="list-group-item">Nomor Telepon: {{ $employee->phone_number }}</li>
-                  </ul>
+                    <li class="list-group-item"><strong style="display: inline-block; width: 125px;">Nama</strong> : {{ $employee->name }}</li>
+                    <li class="list-group-item"><strong style="display: inline-block; width: 125px;">Jenis Kelamin</strong> : {{ $employee->gender }}</li>
+                    <li class="list-group-item"><strong style="display: inline-block; width: 125px;">Nomor Telepon</strong> : {{ $employee->phone_number }}</li>
+                    <a href={{ route('pegawai') }} class="btn btn-primary">Back</a>
+                </ul>
             </div>
         </div>
     </div>
