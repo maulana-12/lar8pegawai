@@ -15,8 +15,8 @@
                 
                 <div class="mb-3">
                     <label for="gender" class="form-label">Jenis Kelamin:</label>
-                    <select class="form-select" required aria-label="Select gender" id="gender" name="gender">
-                        <option selected>Pilih jenis kelamin</option>
+                    <select class="form-select" required aria-label="Select gender" id="gender" name="gender" required>
+                        <option value="">Pilih jenis kelamin</option>
                         <option value="male">Laki-Laki</option>
                         <option value="female">Perempuan</option>
                     </select>

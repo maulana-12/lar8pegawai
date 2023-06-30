@@ -36,9 +36,12 @@
                           <a href={{ route('pegawai.edit',$row->id) }} class="btn btn-warning">Update</a>
                           {{-- <button type="button" class="btn btn-danger">Delete</button> --}}
                           <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $row->id }}">
+                        {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $row->id }}">
                             Delete
-                        </button>
+                        </button> --}}
+                        <a href="#" class="btn btn-danger delete" data-id="{{ $row->id }}" data-name="{{ $row->name }}">
+                            Delete
+                        </a>
                       </td>
                     </tr>
   
@@ -60,9 +63,34 @@
                         </div>
                         </div>
                     </div>
+
+                    <script>
+                        $('.delete').click( function () {
+                            var employeeName=$(this).attr('data-name');
+                            var employeeId=$(this).attr('data-id');
+                            swal({
+                                title: "Apakah kamu yakin?",
+                                text: "Kamu akan menghapus data pegawai "+employeeName,
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                            if (willDelete) {
+                                window.location="pegawai/delete/"+employeeId
+                                swal("Data "+employeeName+" sudah terhapus!", {
+                                icon: "success",
+                                });
+                            } else {
+                                swal("Data tidak jadi dihapus!  ");
+                            }
+                            });
+                        })
+                    </script>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
 @endsection
