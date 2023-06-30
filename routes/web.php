@@ -25,3 +25,4 @@ Route::post('/pegawai/insert', [EmployeeController::class, 'store'])->name('pega
 Route::get('/pegawai/{id}', [EmployeeController::class, 'show'])->name('pegawai.show');
 Route::get('/pegawai/edit/{id}', [EmployeeController::class, 'edit'])->name('pegawai.edit');
 Route::put('/pegawai/update/{id}', [EmployeeController::class, 'update'])->name('pegawai.update');
+Route::get('/pegawai/delete/{id}', [EmployeeController::class, 'destroy'])->name('pegawai.delete');

@@ -18,6 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->enum('gender', ['male', 'female']);
             $table->string('phone_number', 13);
+            $table->string('image');
             $table->timestamps();
         });
     }
