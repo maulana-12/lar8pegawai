@@ -101,10 +101,17 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'gender' => 'required',
+            'phone_number' => 'required|max:13',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
         $employee = Employee::findOrFail($id);
-        $employee->name = $request->input('name');
-        $employee->gender = $request->input('gender');
-        $employee->phone_number = $request->input('phone_number');
+        $employee->name = $validatedData['name'];
+        $employee->gender = $validatedData['gender'];
+        $employee->phone_number = $validatedData['phone_number'];
 
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
@@ -121,7 +128,7 @@ class EmployeeController extends Controller
             $file->move('img_pegawai/', $fileName);
 
             $employee->image = $fileName;
-            $employee->save();
+            // $employee->save();
         }
 
         $employee->save();

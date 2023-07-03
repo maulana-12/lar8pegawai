@@ -24,7 +24,7 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Masukan foto:</label>
-                    <input type="file" class="form-control" name="image" id="image" required> 
+                    <input type="file" class="form-control" name="image" id="image" > 
                     
                     @if (strlen($employee->image)>0)
                     <img src="{{ asset('img_pegawai/'.$employee->image) }}" class="m-3" style="width: 150px;" alt="Image employee">
@@ -33,7 +33,14 @@
                 
                 <div class="mb-3">
                     <label for="phone_number" class="form-label">Nomor Telepon:</label>
-                    <input type="number" class="form-control" name="phone_number" id="phone_number" value="{{$employee->phone_number  }}">
+                    <input type="number" 
+                    class="form-control" 
+                    name="phone_number" id="phone_number" 
+                    value="{{$employee->phone_number  }}"
+                    maxlength="13">
+                    @if ($errors->has('phone_number'))
+                        <div class="alert alert-danger mt-1 p-1">{{ $errors->first('phone_number') }}</div>
+                    @endif
                 </div>
             
                 <button type="submit" class="btn btn-primary">Update Pegawai</button>
